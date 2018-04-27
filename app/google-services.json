@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "232278886995",
+    "firebase_url": "https://pedulipendidikandila.firebaseio.com",
+    "project_id": "pedulipendidikandila",
+    "storage_bucket": "pedulipendidikandila.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:232278886995:android:cd6ae70131fe86ca",
+        "android_client_info": {
+          "package_name": "com.example.dila.pedulipendidikan_dila"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "232278886995-cu355e7v8989ju4jup2m7h9scqopsl6j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.dila.pedulipendidikan_dila",
+            "certificate_hash": "322629330cfecb926fc1869f2e65d33c237fe170"
+          }
+        },
+        {
+          "client_id": "232278886995-kjumsvmsgsaa4clpijtckg3kr8qhvsqp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHLo8J9nRJoleyifEE74vDXdtmEs3WDEA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "232278886995-kjumsvmsgsaa4clpijtckg3kr8qhvsqp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
