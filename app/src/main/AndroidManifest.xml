@@ -28,8 +28,6 @@
         <activity android:name=".DetailPost" />
         <activity android:name=".Profile" />
         <activity android:name=".AddPost" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".MainActivity"></activity>
     </application>
 
 </manifest>

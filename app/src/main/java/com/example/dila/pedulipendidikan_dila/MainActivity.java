@@ -1,47 +1,92 @@
 package com.example.dila.pedulipendidikan_dila;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button mbtKajian, mbtUstadz,mbtSedekah;
+    private FirebaseAuth mAuth;
+
+    public static final String table1 = "Post";
+    public static final String table2 = "Comment";
+    public static final String table3 = "User";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mbtKajian = findViewById(R.id.buku);
-        mbtUstadz = findViewById(R.id.sekolah);
-        mbtSedekah = findViewById(R.id.baju);
+
+        // Create an instance of the tab layout from the view.
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs_layout);
+        // Set the text for each tab.
+        tabLayout.addTab(tabLayout.newTab().setText("Terbaru"));
+        tabLayout.addTab(tabLayout.newTab().setText("Poto Saya"));
+        // Set the tabs to fill the entire layout.
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+
+        mAuth = FirebaseAuth.getInstance();
+
+        final ViewPager viewPager = (ViewPager) findViewById(R.id.mainPager);
+        final PagerAdapter adapter = new PagerAdapter
+                (getSupportFragmentManager(), tabLayout.getTabCount());
+        viewPager.setAdapter(adapter);
+        viewPager.setAdapter(adapter);
+        // Setting a listener for clicks.
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
     }
 
-    public void onClick(View v) {
-        int id = v.getId();
-        switch (id){
-            case R.id.buku:
-                //do ur code
-                Toast.makeText(this,"Info Donasi Buku",Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(this,HomeActivity.class);
-                startActivity(intent);
-                break;
+    //ketika menu dibuat
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
 
-            case R.id.sekolah:
-                intent = new Intent(this, SekolahActivity.class);
-                startActivity(intent);
-                break;
-            case R.id.baju:
-                intent = new Intent(this, MainActivity.class);
-                startActivity(intent);
+    //method yang dijalankan ketika item di pilih
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        //get item id
+        int id = item.getItemId();
 
-                break;
-            default:
-                //do ur code;
-                intent = new Intent(this, MainActivity.class);
-                startActivity(intent);
+        if (id == R.id.infosekolah) {
+            Intent intent = new Intent(MainActivity.this, SekolahActivity.class);
+            startActivity(intent);
         }
+
+        else if (id == R.id.logout) {
+            FirebaseAuth.getInstance().signOut();
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            finish();
+        }
+        return true;
+    }
+
+    public void addPost(View view) {
+        Intent i = new Intent(MainActivity.this, AddPostActivity.class);
+        startActivity(i);
     }
 }
